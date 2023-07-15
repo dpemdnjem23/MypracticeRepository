@@ -1,8 +1,9 @@
-import React from 'react';
-import logo from './logo.svg';
-import { Counter } from './features/counter/Counter';
-import './App.css';
-import ToDoList from './TodoList/ToDoList';
+import React from "react";
+import logo from "./logo.svg";
+import { Counter } from "./features/counter/Counter";
+import "./App.css";
+import ToDoList from "./TodoList/ToDoList";
+import InputTodo from "./TodoList/inputToDo";
 
 function App() {
   return (
@@ -14,11 +15,13 @@ function App() {
           Edit <code>src/App.js</code> and save to reload.
         </p>
         <span>
-        
-       <div>
-         <ToDoList></ToDoList>
-       </div>
-     
+          <div>
+            <InputTodo></InputTodo>
+          </div>
+
+          <div>
+            <ToDoList></ToDoList>
+          </div>
         </span>
       </header>
     </div>

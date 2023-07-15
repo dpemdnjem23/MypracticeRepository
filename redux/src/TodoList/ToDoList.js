@@ -1,37 +1,32 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { selectTodos, todoadd, todofilter } from "./ToDoListSlice";
+import { selectTodos, todoa, remove } from "./ToDoListSlice";
 
 const ToDoList = () => {
+  const todolist = useSelector((state) => state.todos);
 
-
-
-  const todos = useSelector(selectTodos)
-
-console.log(todos)
   const dispatch = useDispatch();
 
-  const addbutton = () => {
-    dispatch(todoadd());
-  };
-  const filterbutton = () => {
-    dispatch(todofilter());
-  };
+  console.log(todolist);
 
   return (
     <div>
-      <button onClick={addbutton} >add</button>
-      <button onClick = {filterbutton}>filter </button>
-
-    <div>
-      {todos.map((todo,idx)=>{
-
-        <li key={idx}>
-          {/* {todo} */}
-
-        </li>
+      {todolist.map((todo, idx) => {
+        return (
+          <li key={todo.id}>
+            <div>{todo.text}</div>
+            <button type="button" onClick={() => dispatch(remove(todo.id))}>
+              trash
+            </button>
+          </li>
+        );
       })}
-    </div>
+      {/* {todos.map((todo,idx)=>{
+
+        <li key={idx}> */}
+      {/* {todo} */}
+      {/* </li>
+      })} */}
     </div>
   );
 };

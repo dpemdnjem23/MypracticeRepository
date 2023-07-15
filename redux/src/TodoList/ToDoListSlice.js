@@ -1,29 +1,26 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 
 //ToDoList에 배열로 들어간다.
+let id = 0
+const initialState = [];
 
 const todoListSlice = createSlice({
   name: "todos",
-  initialState: [],
+  initialState,
   reducers: {
-    todoadd(state, action) {
+    add(state, action) {
       state.push({
-        id: action.payload.id,
-        text: action.payload.text,
+        id: id++,
+        text: action.payload,
         isComplete: false,
       });
     },
 
-    todofilter(state, action) {
-      const todo = state.find((todo) => todo.id === action.payload);
-      todo.isComplete = !todo.isComplete;
+    remove(state, action) {
+      return state.filter((e) => e.id !== action.payload);
     },
   },
 });
 
-
-export const selectTodos = (state) => state.adds.payload
-
-
-export const { todoadd, todofilter } = todoListSlice.actions;
+export const { add, remove } = todoListSlice.actions;
 export default todoListSlice.reducer;
